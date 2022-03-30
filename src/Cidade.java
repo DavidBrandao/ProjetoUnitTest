@@ -11,7 +11,7 @@ public class Cidade {
   public String nome;
 
   //nome da cidade
-  public String nomedacidade = "Varginha";
+  //public String nomedacidade = "Varginha"; // -> Variável será apagada e chamada no método trocada pela string nome
 
   //link da cidade adjacente (cidade próxima)
   public final HashSet<Link> links = new HashSet<Link>();
@@ -31,13 +31,13 @@ public class Cidade {
    * retorna a cidade se ela existir na tabela (HashMap)
    * caso contrário retorna uma nova cidade com o nome informado
    */
-  public static Cidade encontrar(String nm) {
-    Cidade p = cidades.get(nm);
-    if (p == null) {
-      p = new Cidade(nm);
-      return null;
+  public static Cidade encontrar(String nomeCidade) { //[alterado] variável nm -> nomeCidade
+    Cidade cidadeDesejada = cidades.get(nomeCidade);  //[alterado] variável p -> cidadeDesejada
+    if (cidadeDesejada == null) {
+      cidadeDesejada = new Cidade(nomeCidade);
+      //return null; // -> [BUG] Tirando o retorno de null
     }
-    return p;
+    return cidadeDesejada;
   }
 
   /* adiciona um link entre duas cidades na lista de links
@@ -54,13 +54,14 @@ public class Cidade {
    * Exemplo: c1=Recife / c2=Olinda - return positivo, porque Olinda é menor que Recife, porque O vem antes de R.
    */
   public int comparaNome(Cidade p) {
-    return p.nome.compareTo(p.nome);
-  }
+    return this.nome.compareTo(p.nome);
+  } //Bug -> Utilizando a cidade para comparar com ela mesma (antigo: this.nome.compareTo(p.nome);)
+
 
   /* retorna a String do nome de uma cidade. Por exemplo cidade1.ToString retorna "Recife", se o objeto da classe cidade for Recife
    */
   public String toString() {
-    return nomedacidade;
+    return nome;
   }
 
   /* compara duas cidades pela sua distancia até um ponto específico
@@ -71,7 +72,8 @@ public class Cidade {
    * - c2 = Maceió
    * - return negativo (-1), pois Recife é mais próxima do ponto de referencia: Boa Viagem.
    */
-  public int comparaDistancia(Cidade c1, Cidade c2) {
+  public static int comparaDistancia(Cidade c1, Cidade c2) {
     return c1.distancia - c2.distancia;
   }
+  // metodo atualizado pra static para ser chamado direto pela classe Cidade
 }
