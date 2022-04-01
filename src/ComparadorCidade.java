@@ -12,6 +12,7 @@ public class ComparadorCidade implements Comparator<Cidade> {
    * - return negativo (-1), pois Recife é mais próxima do ponto de referencia: Boa Viagem.
    */
   public int compare(Cidade x, Cidade y) {
-    return x.comparaDistancia(x,x);
+    return x.comparaDistancia(x,y);
   }
+  //Metodo utilizava X e X como parametros, foi trocado para X e Y
 }

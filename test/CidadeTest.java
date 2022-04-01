@@ -16,6 +16,7 @@ class CidadeTest {
 
     @BeforeAll
     public static void popularCidades(){
+
         cidade1.nome = "Recife";
         cidade1.distancia = 100;
         cidade2.nome = "Olinda";
@@ -62,17 +63,17 @@ class CidadeTest {
     }
 
     @Test
-    void comparaDistanciaPositiva() {
+    void comparaDistanciaPositivaNovo() {
         assertEquals(50, Cidade.comparaDistancia(cidade1, cidade2));
     }
 
     @Test
-    void comparaDistanciaNegativa() {
+    void comparaDistanciaNegativaNovo() {
         assertEquals(-50, Cidade.comparaDistancia(cidade2, cidade1));
     }
 
     @Test
-    void comparaDistanciaIgual() {
+    void comparaDistanciaIgualNovo() {
         assertEquals(0, Cidade.comparaDistancia(cidade2, cidade2));
     }
 }

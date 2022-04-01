@@ -72,8 +72,11 @@ public class Cidade {
    * - c2 = Maceió
    * - return negativo (-1), pois Recife é mais próxima do ponto de referencia: Boa Viagem.
    */
+
   public static int comparaDistancia(Cidade c1, Cidade c2) {
     return c1.distancia - c2.distancia;
   }
   // metodo atualizado pra static para ser chamado direto pela classe Cidade
+  // Verificar metodo com um terceiro objeto chamando a comparação de distancias
+
 }
