@@ -62,11 +62,12 @@ public class Link implements Comparable<Link> {
    * Exemplo: Link1: Recife 3 Olinda / Link2: Recife 2 Camaragibe
    * Link1.compareTo(Link2) -> Resultado: retorna negativo, porque cidade1 é Recife e é igual nos dois Links
    */
+  //[Refactor] foi modificado a variavel l -> link
   //[Bug] Foi Corrigido o segundo termo condicional do else IF, mudando o comparador de AND (&&) para OR (||)
-  public int compareTo(Link l) {
-    if(cidade1==l.cidade1 && cidade2==l.cidade2)
+  public int compareTo(Link link) {
+    if(cidade1==link.cidade1 && cidade2==link.cidade2)
       return 0;
-    else if((cidade1.comparaNome(l.cidade1)<0)  || (cidade1==l.cidade1) || cidade2.comparaNome(l.cidade2)<0)
+    else if((cidade1.comparaNome(link.cidade1)<0)  || (cidade1==link.cidade1) || cidade2.comparaNome(link.cidade2)<0)
       return -1;
     else
       return +1;
