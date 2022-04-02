@@ -11,8 +11,9 @@ public class ComparadorCidade implements Comparator<Cidade> {
    * - c2 = Maceió
    * - return negativo (-1), pois Recife é mais próxima do ponto de referencia: Boa Viagem.
    */
-  public int compare(Cidade x, Cidade y) {
-    return x.comparaDistancia(x,y);
+  //[Refactor] Alteração de variaveis x -> cidade1 | y -> cidade2
+  //[BUG] Metodo utilizava X e X como parametros, foi trocado para X e Y (cidade1, cidade2)
+  public int compare(Cidade cidade1, Cidade cidade2) {
+    return cidade1.comparaDistancia(cidade1,cidade2);
   }
-  //Metodo utilizava X e X como parametros, foi trocado para X e Y
 }

@@ -12,17 +12,18 @@ public class Link implements Comparable<Link> {
    * o link é criado entre as duas cidades
    * Exemplo de comparação Alfabética entre cidades: Camaragibe>Recife, porque C vem antes de R
    */
-  public Link(Cidade c1, Cidade c2, int tam) {
-    if (c1.comparaNome(c2) < 0) {
-      cidade1 = c1;
-      cidade2 = c2;
+  //[Refactor] Alteração das variaveis c1 -> cidade1Link | c2 -> cidade2Link | tam -> tamanhoLink
+  public Link(Cidade cidade1Link, Cidade cidade2Link, int tamanhoLink) {
+    if (cidade1Link.comparaNome(cidade2Link) < 0) {
+      cidade1 = cidade1Link;
+      cidade2 = cidade2Link;
     } else {
-      cidade1 = c2;
-      cidade2 = c1;
+      cidade1 = cidade2Link;
+      cidade2 = cidade1Link;
     }
-    tamanho = tam;
-    c1.addLink(this);
-    c2.addLink(this);
+    tamanho = tamanhoLink;
+    cidade1Link.addLink(this);
+    cidade2Link.addLink(this);
 		usado = true;
   }
 
@@ -38,20 +39,19 @@ public class Link implements Comparable<Link> {
   }
 
   /* seta usado como true ou false a depender de o link ser criado ou não */
+  //[Refactor] Modificado nome da variável u -> estado
+  //[Bug] Atribução do valor para variavel "usado" estava com "false" hardecodes, foi alterado para "estado"
   public void setUsado(boolean estado) {
     usado = estado;
   }
 
-  //[Ajuste] Modificado nome da variável u -> estado
-  //[Bug] Atribução da variavel usado para a variavel do metodo (Codigo estava com "false" hardcoded)
-
-  /* returna uma string com a descrição de um Link entre cidades.
+  /* retorna uma string com a descrição de um Link entre cidades.
    * exemplo Link formado por Cidade1, tamanho 3 e Cidade2, retorna "Cidade1 3 Cidade2".
    */
+  //[BUG] Ajustando o código para concatenar a variável tamanho, como informado na descrição
   public String toString() {
     return cidade1.toString() + " " + tamanho + " " + cidade2.toString();
   }
-  //[BUG] Ajustando o código para concatenar a variável tamanho, como informado na descrição
 
   /* Compara dois links para saber o que eles tem em comum
    * retorna 0 se os links tiverem as mesmas cidade1 e cidade2
@@ -62,9 +62,8 @@ public class Link implements Comparable<Link> {
    * Exemplo: Link1: Recife 3 Olinda / Link2: Recife 2 Camaragibe
    * Link1.compareTo(Link2) -> Resultado: retorna negativo, porque cidade1 é Recife e é igual nos dois Links
    */
-  //[Bug] Foi Corrigido o segundo termo condicional do else IF, mudando de AND (&&) para OR (||)
+  //[Bug] Foi Corrigido o segundo termo condicional do else IF, mudando o comparador de AND (&&) para OR (||)
   public int compareTo(Link l) {
-
     if(cidade1==l.cidade1 && cidade2==l.cidade2)
       return 0;
     else if((cidade1.comparaNome(l.cidade1)<0)  || (cidade1==l.cidade1) || cidade2.comparaNome(l.cidade2)<0)

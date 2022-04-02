@@ -21,16 +21,16 @@ class ComparadorCidadeTest {
 
     @Test
     void comparaDistanciaPositivaNovo() {
-        assertEquals(50, comparadorCidade.compare(cidade1, cidade2));
+        assertEquals(50, comparadorCidade.compare(cidade1, cidade2),"Primeiro parametro é menor ou igual ao segundo");
     }
 
     @Test
     void comparaDistanciaNegativaNovo() {
-        assertEquals(-50, comparadorCidade.compare(cidade2, cidade1));
+        assertEquals(-50, comparadorCidade.compare(cidade2, cidade1), "Primeiro parametro é maior ou igual ao segundo");
     }
 
     @Test
     void comparaDistanciaIgualNovo() {
-        assertEquals(0, comparadorCidade.compare(cidade2, cidade2));
+        assertEquals(0, comparadorCidade.compare(cidade2, cidade2), "Distancias informadas não são iguais");
     }
 }
